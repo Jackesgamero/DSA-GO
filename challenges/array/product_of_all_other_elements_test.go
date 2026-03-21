@@ -1,0 +1,61 @@
+package array
+
+import (
+	"slices"
+	"testing"
+)
+
+/*
+TestProductOfAllOtherElements tests solution(s) with the following signature and problem description:
+
+	ProductOfAllOtherElements(list []int) []int
+
+Given an array of integers A, construct a new array B such that B[i] = product of all items
+in A except A[i] without using division in O(n) time.
+
+For example given {1,2,3,4}, return {24,12,8,6} because:
+* 24=2*3*4.
+* 12=1*3*4.
+* 8=1*2*4.
+* 6=1*2*3.
+*/
+
+func ProductOfAllOtherElements(list []int) []int {
+	result := make([]int, len(list))
+	if len(list) < 2 {
+		return result
+	}
+
+	n := len(list)
+	result[0] = 1
+	for i := 1; i < n; i++ {
+		result[i] = result[i-1] * list[i-1]
+	}
+
+	rightProd := 1
+	for i := n - 1; i >= 0; i-- {
+		result[i] *= rightProd
+		rightProd *= list[i]
+	}
+
+	return result
+}
+
+func TestProductOfAllOtherElements(t *testing.T) {
+	tests := []struct {
+		list     []int
+		products []int
+	}{
+		{[]int{}, []int{}},
+		{[]int{2, 3}, []int{3, 2}},
+		{[]int{1, 2, 3}, []int{6, 3, 2}},
+		{[]int{1, 2, 3, 4}, []int{24, 12, 8, 6}},
+		{[]int{1, 2, 3, 4, 5}, []int{120, 60, 40, 30, 24}},
+	}
+
+	for i, test := range tests {
+		if got := ProductOfAllOtherElements(test.list); !slices.Equal(got, test.products) {
+			t.Fatalf("Failed test case #%d. Want %#v got %#v", i, test.products, got)
+		}
+	}
+}
