@@ -31,19 +31,6 @@ To sort {2,3,1} using Insertion Sort:
 4- Since there are no elements left in the unsorted list, the list is sorted so return {1,2,3}.
 */
 
-func InsertionSort(input []int) {
-	for i := 1; i < len(input); i++ {
-		key := input[i]
-		j := i - 1
-
-		for j >= 0 && input[j] > key {
-			input[j+1] = input[j]
-			j--
-		}
-		input[j+1] = key
-	}
-}
-
 func TestInsertionSort(t *testing.T) {
 	tests := []struct {
 		input, sorted []int

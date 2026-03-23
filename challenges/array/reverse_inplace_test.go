@@ -19,14 +19,6 @@ Reverse of items from index 0 to 4 is {5,4,3,2,1} and the remaining item {6} rem
 the the resulting slice is {5,4,3,2,1,6}.
 */
 
-func ReverseInPlace(list []int, start, end int) {
-	for start < end {
-		list[start], list[end] = list[end], list[start]
-		start++
-		end--
-	}
-}
-
 func TestReverseInPlace(t *testing.T) {
 	tests := []struct {
 		list     []int

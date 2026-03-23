@@ -11,18 +11,6 @@ Given an unsorted slice of n positive integers like {3,2,1,4,5,4,…,n} where ea
 than n and there is at most one duplicate, return the duplicate value like 4.
 */
 
-func FindDuplicate(list []int) int {
-	elements := make(map[int]bool)
-
-	for _, v := range list {
-		if elements[v] {
-			return v
-		}
-		elements[v] = true
-	}
-	return -1
-}
-
 func TestFindDuplicate(t *testing.T) {
 	tests := []struct {
 		list      []int

@@ -1,7 +1,6 @@
 package strings
 
 import (
-	"strings"
 	"testing"
 )
 
@@ -32,34 +31,6 @@ one two one one.
 The third output (two ones) reads the level before it which is 11. Two ones means repeat
 1 two times i.e. 11.
 */
-
-func LookAndTell(depth int) []string {
-	if depth <= 0 {
-		return []string{"-1"}
-	}
-
-	sequence := []string{"1"}
-
-	for i := 1; i < depth; i++ {
-		prev := sequence[i-1]
-		var b strings.Builder
-		count := 1
-
-		for j := 0; j < len(prev); j++ {
-			if j+1 == len(prev) || prev[j] != prev[j+1] {
-				b.WriteByte(byte('0' + count))
-				b.WriteByte(prev[j])
-				count = 1
-			} else {
-				count++
-			}
-		}
-
-		sequence = append(sequence, b.String())
-	}
-
-	return sequence
-}
 
 func TestFindDuplicate(t *testing.T) {
 	tests := []struct {

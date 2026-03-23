@@ -21,21 +21,6 @@ After 2 rotations: {2,3,1}.
 After 3 rotations: {1,2,3}.
 */
 
-func RotateKSteps(list []int, k int) {
-	n := len(list)
-	if n < 2 || k%n == 0 {
-		return
-	}
-
-	curr := list[0]
-	index := 0
-	for range n {
-		pos := (index + k) % n
-		list[pos], curr = curr, list[pos]
-		index = pos
-	}
-}
-
 func TestRotateKSteps(t *testing.T) {
 	tests := []struct {
 		list        []int

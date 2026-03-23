@@ -14,36 +14,6 @@ For example given "coat", return "caot", because the vowels are "o" and "a" and 
 are reversed.
 */
 
-func ReverseVowels(str string) (string, error) {
-	runes := []rune(str)
-	i, j := 0, len(runes)-1
-
-	for i < j {
-		if !isVowel(runes[i]) {
-			i++
-			continue
-		}
-
-		if !isVowel(runes[j]) {
-			j--
-			continue
-		}
-
-		runes[i], runes[j] = runes[j], runes[i]
-		i++
-		j--
-	}
-	return string(runes), nil
-}
-
-func isVowel(c rune) bool {
-	switch c {
-	case 'a', 'e', 'i', 'o', 'u':
-		return true
-	}
-	return false
-}
-
 func TestReverseVowels(t *testing.T) {
 	tests := []struct {
 		word     string
